@@ -75,6 +75,9 @@ app.delete("/api/flavors/:id", async (req, res, next) => {
 // put
 app.put("/api/flavors/:id", async (req, res, next) => {
   try {
+    const { name, is_favorite } = req.body;
+    const { id } = req.params;
+
     const SQL = /*sql*/ `
         UPDATE flavors
         SET
