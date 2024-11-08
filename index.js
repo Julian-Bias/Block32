@@ -25,7 +25,9 @@ app.get("/api/flavors", async (req, res, next) => {
 app.get("/api/flavors/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const response = await client.query("SELECT * FROM flavors WHERE id = $1");
+    const response = await client.query("SELECT * FROM flavors WHERE id = $1", [
+      id,
+    ]);
     if (response.rows.length === 0) {
       return res.status(404).json({ error: "Flavor not found" });
     }
